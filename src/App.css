@@ -13,7 +13,6 @@ h1 {
 .todo-form {
   display: flex;
   margin-bottom: 20px;
-  gap: 10px;
 }
 
 .todo-input {
@@ -22,6 +21,7 @@ h1 {
   font-size: 16px;
   border: 1px solid #ddd;
   border-radius: 4px;
+  margin-right: 10px;
 }
 
 .todo-button {
@@ -31,7 +31,6 @@ h1 {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.2s;
 }
 
 .todo-button:hover {
@@ -39,36 +38,26 @@ h1 {
 }
 
 /* Todo Item Styles */
+.todo-list {
+  list-style: none;
+  padding: 0;
+}
+
 .todo-item {
   display: flex;
   align-items: center;
-  padding: 12px;
+  padding: 10px;
   border: 1px solid #ddd;
-  margin-bottom: 8px;
-  border-radius: 4px;
-  gap: 10px;
-}
-
-.todo-item.completed span {
-  text-decoration: line-through;
-  color: #888;
-}
-
-.priority-select {
-  padding: 4px;
+  margin-bottom: 5px;
   border-radius: 4px;
 }
 
-.priority-high {
-  background-color: #ffebee;
+.todo-item input[type="checkbox"] {
+  margin-right: 10px;
 }
 
-.priority-medium {
-  background-color: #fff3e0;
-}
-
-.priority-low {
-  background-color: #f5f5f5;
+.todo-item span {
+  flex: 1;
 }
 
 .delete-button {
@@ -78,11 +67,10 @@ h1 {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.2s;
 }
 
 .delete-button:hover {
-  background-color: #d32f2f;
+  background-color: #da190b;
 }
 
 /* Duplicated styles - bad practice */

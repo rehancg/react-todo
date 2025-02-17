@@ -1,52 +1,70 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import TodoForm from './components/TodoForm';
-import TodoItem from './components/TodoItem';
 
 function App() {
   const [todos, setTodos] = useState([]);
   const [idCounter, setIdCounter] = useState(0);
 
-  const addTodo = useCallback((text) => {
-    setIdCounter(prev => prev + 1);
-    setTodos(prev => [...prev, {
+  const addTodo = (text) => {
+    setIdCounter(idCounter + 1);
+    const newTodo = {
       id: idCounter,
-      text,
+      text: text,
       completed: false,
       priority: 'low'
-    }]);
-  }, [idCounter]);
+    };
+    setTodos([...todos, newTodo]);
+  };
 
-  const toggleTodo = useCallback((id) => {
-    setTodos(prev => prev.map(todo =>
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+  const toggleTodo = (id) => {
+    setTodos(
+      todos.map(todo =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  };
+
+  const deleteTodo = (id) => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  };
+
+  const changePriority = (id, priority) => {
+    setTodos(
+      todos.map(todo =>
+        todo.id === id ? { ...todo, priority: priority } : todo
+      )
+    );
+  };
+
+  const renderTodos = () => {
+    return todos.map(todo => (
+      <div key={todo.id} className={`${todo.completed ? 'completed' : ''} ${todo.priority === 'high' ? 'red-bg' : 'white-bg'}`}>
+        <input
+          type="checkbox"
+          checked={todo.completed}
+          onChange={() => toggleTodo(todo.id)}
+        />
+        <span>{todo.text}</span>
+        <select
+          value={todo.priority}
+          onChange={(e) => changePriority(todo.id, e.target.value)}
+        >
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+      </div>
     ));
-  }, []);
-
-  const deleteTodo = useCallback((id) => {
-    setTodos(prev => prev.filter(todo => todo.id !== id));
-  }, []);
-
-  const changePriority = useCallback((id, priority) => {
-    setTodos(prev => prev.map(todo =>
-      todo.id === id ? { ...todo, priority } : todo
-    ));
-  }, []);
+  };
 
   return (
     <div className="App">
       <h1>Todo App</h1>
       <TodoForm onSubmit={addTodo} />
-      <div className="todo-list">
-        {todos.map(todo => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            onToggle={toggleTodo}
-            onDelete={deleteTodo}
-            onChangePriority={changePriority}
-          />
-        ))}
+      <div id="todoList">
+        {renderTodos()}
       </div>
     </div>
   );
