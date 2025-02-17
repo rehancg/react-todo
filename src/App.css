@@ -1,0 +1,109 @@
+.App {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.todo-form {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.todo-input {
+  flex: 1;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.todo-button {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.todo-button:hover {
+  background-color: #45a049;
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 5px;
+  border-radius: 4px;
+}
+
+.todo-item input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.todo-item span {
+  flex: 1;
+}
+
+.delete-button {
+  padding: 5px 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #da190b;
+}
+
+/* Duplicated styles - bad practice */
+.completed {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.completed span {
+  text-decoration: line-through;
+  color: #888;
+}
+
+/* Non-semantic class names */
+.red-bg {
+  background-color: red;
+}
+
+.white-bg {
+  background-color: white;
+}
+
+/* Magic numbers */
+#todoList > div {
+  margin: 12.5px 0;
+  padding: 17px;
+}
+
+/* Overly specific selectors */
+div#todoList div button {
+  margin-left: 10px;
+  background-color: #ff0000;
+  color: white;
+}
+
+div#todoList div select {
+  margin-left: 10px;
+} 
